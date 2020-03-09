@@ -6,3 +6,6 @@ out
 .clj-kondo/.cache
 yarn-error.log
 report.html
+pom.xml
+target
+.lein-repl-history
