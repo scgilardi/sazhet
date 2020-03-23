@@ -5,6 +5,7 @@ out
 .nrepl-port
 .clj-kondo/.cache
 yarn-error.log
+yarn.lock
 report.html
 pom.xml
 target
