@@ -13,8 +13,8 @@
                        [f r]
                        [(gensym) body])]
     `(fn [~event]
-       (when-not (.-defaultPrevented ~event)
+       (when-not (default-prevented? ~event)
          (let [value# (do ~@body)]
            (when-not (= :evt>/unhandled value#)
-             (.preventDefault ~event))
+             (prevent-default ~event))
            value#)))))

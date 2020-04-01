@@ -4,7 +4,8 @@
   Adapted from and inspired by `keechma.toolbox.ui`."
   (:require [clojure.string :as str]
             [keechma.ui-component :as ui])
-  (:require-macros [sazhet.ui :refer [evt>]]))
+  (:require-macros [cljs.core :refer [exists?]]
+                   [sazhet.ui :refer [evt>]]))
 
 ;; ## Routes
 
@@ -98,6 +99,18 @@
   (ui/send-command ctx command args))
 
 ;; ## Events
+
+(defn default-prevented?
+  "Safe predicate that only checks defaultPrevented if it exists."
+  [event]
+  (when (exists? (.-defaultPrevented event))
+    (.-defaultPrevented event)))
+
+(defn prevent-default
+  "Safe setter that only calls preventDefault if it exists."
+  [event]
+  (when (exists? (.-preventDefault event))
+    (.-preventDefault event)))
 
 (defn key>
   "Returns an event-handler that uses a KeyboardEvent's `key` value to
